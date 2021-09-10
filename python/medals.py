@@ -1,21 +1,4 @@
-medalResults = [
-    {
-        "sport": "cycling",
-        "podium": ["1.China", "2.Germany", "3.ROC"]
-    },
-    {
-        "sport": "fencing",
-        "podium": ["1.ROC", "2.France", "3.Italy"]
-    },
-    {
-        "sport": "high jump",
-        "podium": ["1.Italy", "1.Qatar", "3.Belarus"]
-    },
-    {
-        "sport": "swimming",
-        "podium": ["1.USA", "2.France", "3.Brazil"]
-    }
-]
+#Here is the code that is required to output def_testfunction. if you run the code below it should output. otherwise there is another .py file in my repo which only consists of my code, and this can be run.
 
 
 medalResults = [
