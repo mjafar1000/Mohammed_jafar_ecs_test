@@ -17,47 +17,62 @@ medalResults = [
     }
 ]
 
+def createMedalTable(results):
+    firstlist = []
+    secondlist = []
+    thirdlist = []
 
+    for x in medalResults[0:]:
 
-firstlist = []
-secondlist = []
-thirdlist = []
+        for p in x["podium"]:
+            if "1" in p:
+                firstlist.append(p)
 
-for x in medalResults[0:]:
-    
-    for p in x["podium"]:
-        if "1" in p:
-            firstlist.append(p)
+            elif "2" in p:
+                secondlist.append(p)
+            else:
+                thirdlist.append(p)
 
-        elif "2" in p:
-            secondlist.append(p)
+    table = (firstlist,secondlist,thirdlist)
+
+    nt = {}
+
+    for country in table[0]:
+        if country[2:] in nt:
+            nt[(country[2:])] += 3
         else:
-            thirdlist.append(p)          
+            nt[(country[2:])] = 3
 
-table = (firstlist,secondlist,thirdlist)
+    for country in table[1]:
+        if country[2:] in nt:
+            nt[(country[2:])] += 2
+        else:
+            nt[(country[2:])] = 2
 
-nt = {}
-
-for country in table[0]:
-    if country[2:] in nt:
-        nt[(country[2:])] += 3
-    else:
-        nt[(country[2:])] = 3
-        
-for country in table[1]:
-    if country[2:] in nt:
-        nt[(country[2:])] += 2
-    else:
-        nt[(country[2:])] = 2
-
-for country in table[2]:
-    if country[2:] in nt:
-        nt[(country[2:])] += 1
-    else:
-        nt[(country[2:])] = 1
+    for country in table[2]:
+        if country[2:] in nt:
+            nt[(country[2:])] += 1
+        else:
+            nt[(country[2:])] = 1
+    return nt
 
 
-data_sorted = {k: v for k, v in sorted(nt.items(), key=lambda x: x[1], reverse = True)}
-print("{" + "\n".join("{!r}: {!r},".format(k, v) for k, v in data_sorted.items()) + "}")
+def test_function():
+    #This it the test function, please don't change me
+    medalTable = createMedalTable(medalResults)
+    expectedTable = {
+        "Italy": 4,
+        "France": 4,
+        "ROC": 4,
+        "USA": 3,
+        "Qatar": 3,
+        "China": 3,
+        "Germany": 2,
+        "Brazil": 1,
+        "Belarus": 1,
+    }
+    assert medalTable == expectedTable
+    if medalTable == expectedTable:
+        print("y")
 
-
+test_function()
